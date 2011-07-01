@@ -1,0 +1,39 @@
+= DirChecksum - Recursively checksum a directory
+
+== Overview
+
+This class builds a checksum file of all files inside a given
+directory and then provides functions for comparing that directory
+against the checksum file for modifications.  Three implementations
+are available, one based on md5, one based on sha1, and one based on
+file mtime.
+
+== Installation
+
+  gem install dir_checksum
+
+== Git Repository
+
+http://github.com/ePublishing/dir_checksum
+
+== Usage
+
+  # Process checksum with a block (defaults to SHA1)
+  DirChecksum.recursive_checksum('/a/directory') do |file, checksum|
+    puts "#{file}: #{checksum}"
+  end
+
+  # Writes result of checksum to file in root of directory
+  DirChecksum::MD5.write_to_file!('/some/absolute/directory')
+
+  # Write result of checksum to (optional) output checksum file
+  DirChecksum::SHA1.write_to_file!('some/relative/directory', 'checksum_output.txt')
+
+  # If a checksum file exists (optionally pass in location), examine it
+  # and compare those results with current directory to determine differences
+  DirChecksum::Timestamp.warn_if_has_checksum_file_and_diff!('/a/directory')
+
+---
+Author::   David McCullars <mailto:dmccullars@ePublishing.com>
+Copyright:: (C) 2011 ePublishing
+Licence::  GPL[http://www.gnu.org/copyleft/gpl.html]

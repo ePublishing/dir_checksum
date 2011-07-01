@@ -1,0 +1,14 @@
+PATH
+  remote: .
+  specs:
+    dir_checksum (0.4.2)
+
+GEM
+  remote: http://rubygems.org/
+  specs:
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  dir_checksum!
